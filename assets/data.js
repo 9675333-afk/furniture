@@ -317,9 +317,9 @@ window.PROJECT = {
    "renders": [
     {
      "src": "assets/img/renders/enhanced/vannaya-v2.jpg",
-     "width": 1800,
-     "height": 2299,
-     "bytes": 703826,
+     "width": 1024,
+     "height": 1280,
+     "bytes": 193377,
      "caption": ""
     }
    ],
