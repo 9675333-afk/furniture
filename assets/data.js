@@ -618,11 +618,11 @@ window.PROJECT = {
    },
    "renders": [
     {
-     "src": "assets/img/renders/enhanced/kuhnya-v1.jpg",
-     "width": 1800,
-     "height": 1165,
-     "bytes": 267858,
-     "caption": "Общая визуализация кухни и гостиной"
+     "src": "assets/img/renders/enhanced/kuhnya-fotoreal.jpg",
+     "width": 1536,
+     "height": 1024,
+     "bytes": 201965,
+     "caption": "Фотореалистичный рендер"
     }
    ],
    "drawings": [
@@ -811,11 +811,11 @@ window.PROJECT = {
    },
    "renders": [
     {
-     "src": "assets/img/renders/enhanced/kabinet-divany-v6.jpg",
-     "width": 1800,
-     "height": 1442,
-     "bytes": 348256,
-     "caption": ""
+     "src": "assets/img/renders/enhanced/kabinet-divany-fotoreal.jpg",
+     "width": 1280,
+     "height": 1024,
+     "bytes": 152824,
+     "caption": "Фотореалистичный рендер"
     }
    ],
    "drawings": [
