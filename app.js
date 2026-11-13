@@ -49,14 +49,75 @@
   /* ---------- scroll spy ---------- */
 
   const rooms = $$('.room');
-  const railEl = $('.room-rail');
+  const railEl = $('.rail-inner');
   const railLinks = new Map($$('.rail-link[data-spy]').map((a) => [a.dataset.spy, a]));
   let spyTick = 0;
+  let railHold = 0;
 
   function centerRailLink(link) {
-    if (!railEl) return;
+    if (!railEl || Date.now() < railHold) return;
+    const max = railEl.scrollWidth - railEl.clientWidth;
+    if (max <= 0) return;
     const left = link.offsetLeft - (railEl.clientWidth - link.offsetWidth) / 2;
-    railEl.scrollLeft = Math.max(0, Math.min(left, railEl.scrollWidth - railEl.clientWidth));
+    railEl.scrollTo({ left: Math.max(0, Math.min(left, max)), behavior: 'smooth' });
+  }
+
+  if (railEl) {
+    railEl.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      const max = railEl.scrollWidth - railEl.clientWidth;
+      if (max <= 0) return;
+      const next = railEl.scrollLeft + e.deltaY;
+      if ((e.deltaY > 0 && railEl.scrollLeft < max) || (e.deltaY < 0 && railEl.scrollLeft > 0)) {
+        e.preventDefault();
+        railEl.scrollLeft = Math.max(0, Math.min(next, max));
+        railHold = Date.now() + 1500;
+      }
+    }, { passive: false });
+
+    railEl.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      railEl.scrollLeft += e.key === 'ArrowRight' ? 140 : -140;
+      railHold = Date.now() + 1500;
+    });
+
+    let drag = null;
+    let suppressClick = false;
+    railEl.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      drag = { x: e.clientX, left: railEl.scrollLeft, moved: false };
+      suppressClick = false;
+    });
+    railEl.addEventListener('pointermove', (e) => {
+      if (!drag) return;
+      const dx = e.clientX - drag.x;
+      if (!drag.moved && Math.abs(dx) > 5) {
+        drag.moved = true;
+        railEl.classList.add('is-dragging');
+        railEl.setPointerCapture(e.pointerId);
+      }
+      if (!drag.moved) return;
+      railEl.scrollLeft = drag.left - dx;
+      railHold = Date.now() + 1500;
+    });
+    const endDrag = (e) => {
+      if (!drag) return;
+      if (drag.moved) {
+        suppressClick = true;
+        railEl.classList.remove('is-dragging');
+        if (railEl.hasPointerCapture(e.pointerId)) railEl.releasePointerCapture(e.pointerId);
+      }
+      drag = null;
+    };
+    railEl.addEventListener('pointerup', endDrag);
+    railEl.addEventListener('pointercancel', endDrag);
+    railEl.addEventListener('click', (e) => {
+      if (!suppressClick) return;
+      e.preventDefault();
+      e.stopPropagation();
+      suppressClick = false;
+    }, true);
   }
 
   function updateSpy() {

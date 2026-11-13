@@ -138,9 +138,9 @@ window.PROJECT = {
    "renders": [
     {
      "src": "assets/img/renders/enhanced/postirochnaya-v2.jpg",
-     "width": 1344,
-     "height": 2628,
-     "bytes": 700973,
+     "width": 1024,
+     "height": 1792,
+     "bytes": 269675,
      "caption": ""
     }
    ],

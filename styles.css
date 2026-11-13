@@ -381,8 +381,19 @@ li { list-style: none; }
   max-width: 1560px;
   margin: 0 auto;
   padding: 0 var(--page);
+  cursor: grab;
+  scroll-behavior: smooth;
 }
 .rail-inner::-webkit-scrollbar { display: none; }
+.rail-inner.is-dragging { cursor: grabbing; scroll-behavior: auto; user-select: none; }
+.rail-inner:focus-visible { outline: 2px solid var(--site-accent); outline-offset: -2px; }
+
+@media (min-width: 900px) {
+  .rail-inner { scrollbar-width: thin; scrollbar-color: var(--site-border) transparent; }
+  .rail-inner::-webkit-scrollbar { display: block; height: 4px; }
+  .rail-inner::-webkit-scrollbar-track { background: transparent; }
+  .rail-inner::-webkit-scrollbar-thumb { background: var(--site-border); border-radius: 2px; }
+}
 
 .rail-link {
   flex: none;
