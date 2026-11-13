@@ -59,9 +59,9 @@ window.PROJECT = {
    "renders": [
     {
      "src": "assets/img/renders/enhanced/priezhaya-v1.jpg",
-     "width": 1800,
-     "height": 2207,
-     "bytes": 505993,
+     "width": 1024,
+     "height": 1280,
+     "bytes": 136725,
      "caption": ""
     },
     {
@@ -618,11 +618,11 @@ window.PROJECT = {
    },
    "renders": [
     {
-     "src": "assets/img/renders/enhanced/kuhnya-fotoreal.jpg",
+     "src": "assets/img/renders/enhanced/kuhnya-v1.jpg",
      "width": 1536,
      "height": 1024,
      "bytes": 201965,
-     "caption": "Фотореалистичный рендер"
+     "caption": "Общая визуализация кухни и гостиной"
     }
    ],
    "drawings": [
@@ -811,11 +811,11 @@ window.PROJECT = {
    },
    "renders": [
     {
-     "src": "assets/img/renders/enhanced/kabinet-divany-fotoreal.jpg",
+     "src": "assets/img/renders/enhanced/kabinet-divany-v6.jpg",
      "width": 1280,
      "height": 1024,
      "bytes": 152824,
-     "caption": "Фотореалистичный рендер"
+     "caption": ""
     }
    ],
    "drawings": [
